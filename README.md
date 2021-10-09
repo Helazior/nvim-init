@@ -23,3 +23,9 @@ pip3 install flake8
 pip3 install pylint
 ```
 TODO: changer les niveaux d'alerte car ils sont trop violent en python (une erreur car j'ai pas mis d'espace avant un commentaire...)
+
+Dans `~/.zshrc`
+Mettre
+```
+alias vi="nvim"
+```
