@@ -40,6 +40,7 @@ export FZF_DEFAULT_COMMAND='fdfind --type f --hidden --follow --exclude .git --e
 ```
 Dans `~/.zshrc_alias` s'il existe (ou zshrc sinon) mettre :
 ```
+alias vim="nvim"
 alias vi="nvim"
 alias v="nvim"
 ```
