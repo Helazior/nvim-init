@@ -34,7 +34,8 @@ pip3 install --user neovim
 ```
 Puis dans vim :
 ```
-VimspectorInstall --all --force-all
+:VimspectorInstall --all --force-all
+:VimspectorInstall vscode-node-debug2
 ```
 
 Pour Ale, installer dans le terminal :
