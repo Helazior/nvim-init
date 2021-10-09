@@ -16,7 +16,6 @@ Puis dans nvim taper :
 :CocInstall coc-pairs
 :CocInstall coc-vimtex
 :CocInstall coc-java
-:CocInstall coc-java-debug
 :CocConfig
 ```
 et mettre :
