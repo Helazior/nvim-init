@@ -22,9 +22,16 @@ Puis dans nvim taper :
 et mettre :
 `"diagnostic.displayByAle": true`
 
+
+
 Puis aller sur `https://download.eclipse.org/jdtls/snapshots/?d`
 Télécharger `jdt-language-server-1.5.0-202110010353.tar.gz` ou plus récent, le décompresser dans :
 `~/.config/coc/extensions/coc-java-data/server`
+
+Pour le debugger : dans le terminal :
+```
+pip3 install --user neovim
+```
 
 Pour Ale, installer dans le terminal :
 
