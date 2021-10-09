@@ -19,10 +19,6 @@ Puis dans nvim taper :
 et mettre :
 `"diagnostic.displayByAle": true`
 
-Dans le terminal taper :
-```
-export FZF_DEFAULT_COMMAND='fdfind --type f --hidden --follow --exclude .git --exclude .vim'
-```
 Pour Ale, installer dans le terminal :
 
 ```
@@ -34,5 +30,15 @@ TODO: changer les niveaux d'alerte car ils sont trop violent en python (une erre
 Dans `~/.zshrc`
 Mettre
 ```
+export FZF_DEFAULT_COMMAND='fdfind --type f --hidden --follow --exclude .git --exclude .vim'
+```
+Dans `~/.zshrc_alias` s'il existe (ou zshrc sinon) mettre :
+```
 alias vi="nvim"
+```
+
+Puis :
+```
+source .zshrc
+source .zshrc_alias
 ```
