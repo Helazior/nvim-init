@@ -35,6 +35,9 @@ pip3 install --user neovim
 Puis dans vim :
 ```
 :VimspectorInstall --all --force-all
+```
+Ou :
+```
 :VimspectorInstall vscode-cpptools
 :VimspectorInstall debugpy
 :VimspectorInstall vscode-java-debug
