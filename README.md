@@ -35,6 +35,9 @@ pip3 install --user neovim
 Puis dans vim :
 ```
 :VimspectorInstall --all --force-all
+:VimspectorInstall vscode-cpptools
+:VimspectorInstall debugpy
+:VimspectorInstall vscode-java-debug
 ```
 
 Pour Ale, installer dans le terminal :
