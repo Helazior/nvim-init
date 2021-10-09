@@ -32,6 +32,10 @@ Pour le debugger : dans le terminal :
 ```
 pip3 install --user neovim
 ```
+Puis dans vim :
+```
+VimspectorInstall --all --force-all
+```
 
 Pour Ale, installer dans le terminal :
 
