@@ -461,6 +461,10 @@ let g:ale_lint_on_text_changed = 'always'
     "if rust:
     autocmd BufRead,BufNewFile *.rs let @p='iprintln!("{}", );ODi'
 
+	"if java:
+	autocmd FileType java let @p='iSystem.out.println("");hhi'
+	autocmd FileType java let @c='ipublic class Main {public static void main(String argv[]) {System.out.println("Hello word");}}vkkkk=jo'
+
 " }
 
 
