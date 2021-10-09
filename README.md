@@ -34,6 +34,7 @@ Pour Ale, installer dans le terminal :
 pip3 install flake8
 pip3 install pylint
 pip3 install autopep8
+pip3 install black
 pip3 install yapf
 ```
 TODO: changer les niveaux d'alerte car ils sont trop violent en python (une erreur car j'ai pas mis d'espace avant un commentaire...)
