@@ -402,6 +402,21 @@ set statusline=%{LinterStatus()}
 
 let b:ale_warn_about_trailing_whitespace = 0
 let g:ale_lint_on_text_changed = 'always'
+
+
+" Check Python files with flake8 and pylint.
+let b:ale_linters = ['pylint']
+" Fix Python files with autopep8 and yapf.
+let b:ale_fixers = ['autopep8', 'yapf', 'black']
+" Disable warnings about trailing whitespace for Python files.
+let b:ale_warn_about_trailing_whitespace = 0
+
+function _AleVisualSelection()
+    ALEFix
+endfunc
+
+map <silent> <F9> :call _AleVisualSelection()<CR>
+
 	" }
 "}
 " GUI Settings {
@@ -488,5 +503,6 @@ Plug 'airblade/vim-gitgutter'					" Pour voir les modifs git
 Plug 'https://github.com/vim-scripts/restore_view.vim.git' " Pour que le curseur revienne au même endroit que lorsqu'on a quitté le programme
 Plug 'frazrepo/vim-rainbow'						" Pour avoir les couleurs sur les parenthèses qui matchent
 Plug 'andymass/vim-matchup'						" match les if else etc. avec %
+" Plug 'puremourning/vimspector'					" debuggueur
 
 call plug#end()
