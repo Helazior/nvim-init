@@ -37,9 +37,8 @@ pip3 install autopep8
 pip3 install black
 pip3 install yapf
 ```
-TODO: changer les niveaux d'alerte car ils sont trop violent en python (une erreur car j'ai pas mis d'espace avant un commentaire...)
 
-```
+
 Dans `~/.zshrc_alias` s'il existe (ou .zshrc sinon) mettre :
 ```
 alias vim="nvim"
