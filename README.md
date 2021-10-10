@@ -22,7 +22,7 @@ et mettre :
 `"diagnostic.displayByAle": true`
 
 
-
+Si dans un programme java il n'arrive pas à activer coc-java :
 Puis aller sur `https://download.eclipse.org/jdtls/snapshots/?d`
 Télécharger `jdt-language-server-1.5.0-202110010353.tar.gz` ou plus récent, le décompresser dans :
 `~/.config/coc/extensions/coc-java-data/server`
