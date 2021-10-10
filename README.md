@@ -16,6 +16,7 @@ Puis dans nvim taper :
 :PlugInstall
 :CocInstall coc-pairs
 :CocInstall coc-vimtex
+:CocInstall coc-markdownlint
 :CocInstall coc-java
 :CocConfig
 ```
