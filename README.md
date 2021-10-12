@@ -17,16 +17,18 @@ Puis dans nvim taper :
 :CocInstall coc-pairs
 :CocInstall coc-vimtex
 :CocInstall coc-java
-:CocInstall coc-snippets
+(:CocInstall coc-snippets)
 :CocConfig
 ```
 et mettre :
 `"diagnostic.displayByAle": true`
 
+(
 Pour coc-snippets :
 ```
 pip3 install --user neovim
 ```
+)
 
 Si dans un programme java il n'arrive pas à activer coc-java :
 Puis aller sur `https://download.eclipse.org/jdtls/snapshots/?d`
