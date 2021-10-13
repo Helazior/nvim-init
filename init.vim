@@ -408,6 +408,7 @@ let g:ale_lint_on_text_changed = 'always'
 let b:ale_linters = ['pylint']
 " Fix Python files with autopep8 and yapf.
 let b:ale_fixers = ['autopep8', 'yapf', 'black']
+
 " Disable warnings about trailing whitespace for Python files.
 let b:ale_warn_about_trailing_whitespace = 0
 
@@ -548,4 +549,6 @@ Plug 'andymass/vim-matchup'						" match les if else etc. avec %
 " Plug 'puremourning/vimspector'					" debuggueur
 Plug 'lervag/vimtex'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+" bottom bar
+Plug 'vim-airline/vim-airline'
 call plug#end()
