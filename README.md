@@ -14,6 +14,7 @@ Mettre le `init.vim` dans :
 Puis dans nvim taper :
 ```
 :PlugInstall
+:CocInstall coc-pairs
 :CocInstall coc-vimtex
 :CocInstall coc-java
 (:CocInstall coc-snippets)
