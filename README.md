@@ -17,7 +17,7 @@ Puis dans nvim taper :
 :CocInstall coc-pairs
 :CocInstall coc-vimtex
 :CocInstall coc-java
-(:CocInstall coc-snippets)
+:CocInstall coc-snippets
 :CocConfig
 ```
 et mettre :
