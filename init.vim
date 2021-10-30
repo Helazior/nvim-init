@@ -92,6 +92,14 @@ set backupdir=~/.cache/vim " Directory to store backup files.
 	" F3: Toggle list (display unprintable characters).
 	nnoremap <F3> :set list!<CR>"
 	set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
+	" spell languages
+	set spelllang=fr
+	setlocal spell spelllang=fr
+	" Show nine spell checking candidates at most
+	set spellsuggest=best,9
+
+	nnoremap <silent> <F7> :set spell!<cr>
+
 
 " }
 " Formatting {
@@ -422,7 +430,7 @@ map <silent> <F9> :call _AleVisualSelection()<CR>
 " Markdown :
 " set to 1, nvim will open the preview window after entering the markdown buffer
 " default: 0
-let g:mkdp_auto_start = 1
+let g:mkdp_auto_start = 0
 
 " options for markdown render
 " mkit: markdown-it options for render
@@ -460,6 +468,10 @@ let g:mkdp_page_title = '「${name}」'
 " these filetypes will have MarkdownPreview... commands
 let g:mkdp_filetypes = ['markdown']
 
+
+"
+nmap <Leader>ll <Plug>MarkdownPreview
+nmap <Leader>lm <Plug>MarkdownPreviewStop
 	" }
 "}
 " GUI Settings {
@@ -505,7 +517,7 @@ let g:mkdp_filetypes = ['markdown']
 	let @a='i#' "place un commentaire et va à la ligne inferieur
 	let @z='xOB^^' "enlève un commentaire
 	let @c='i#include <stdio.h>#include <stdlib.h>int main(int argc, char* argv[]){return 0;}OAOA	'
-	let @p='iprintf("");ODODOD'
+	let @p='iprintf("");hhi'
 	let @f='ifor (;;){}ODOAOCOCOCOCOCOC'
 
 	"if python:
@@ -551,4 +563,37 @@ Plug 'lervag/vimtex'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 " bottom bar
 Plug 'vim-airline/vim-airline'
+Plug 'honza/vim-snippets'
+
 call plug#end()
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
