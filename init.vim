@@ -54,6 +54,9 @@ set backupdir=~/.cache/vim " Directory to store backup files.
 
 " Vim UI {
 
+	"ENREGISTRER AUTOMATIQUEMENT :"
+	autocmd FocusLost,TabLeave * :wall
+
 
 	set cursorline                  " Highlight current line
 
@@ -413,9 +416,9 @@ let g:ale_lint_on_text_changed = 'always'
 
 
 " Check Python files with flake8 and pylint.
-let b:ale_linters = ['pylint']
+" let b:ale_linters = ['pylint']
 " Fix Python files with autopep8 and yapf.
-let b:ale_fixers = ['autopep8', 'yapf', 'black']
+" let b:ale_fixers = ['autopep8', 'yapf', 'black']
 
 " Disable warnings about trailing whitespace for Python files.
 let b:ale_warn_about_trailing_whitespace = 0
