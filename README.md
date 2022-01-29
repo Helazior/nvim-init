@@ -1,6 +1,7 @@
 # nvim-init
 
 * Installer nvim
+* Installer pypy3
 * Installer vim pluging :
 ```
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
