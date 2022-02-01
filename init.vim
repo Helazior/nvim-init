@@ -159,6 +159,8 @@ set backupdir=~/.cache/vim " Directory to store backup files.
 	autocmd filetype c nnoremap <F6> :w <bar> exec '!gcc '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
 	autocmd filetype cpp nnoremap <F6> :w <bar> exec '!g++ '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
 	autocmd filetype tex nnoremap <F6> :w <bar> exec '!pdflatex '.shellescape('%').' && xdg-open '.shellescape('%:r').'.pdf&'<CR>
+	"autocmd BufRead,BufNewFile *.c,*.h,*.cpp 
+	"nnoremap <F6> :w <bar> exec '!decac '.shellescape('%').' && ima '.shellescape('%:r').'.ass'<CR>
 	"map <F7> :!pdflatex % && start %:r.pdf<CR> 
 	" Easier moving in tabs and windows
 	map <C-J> <C-W>j<C-W>_
@@ -517,29 +519,8 @@ nmap <Leader>lm <Plug>MarkdownPreviewStop
 	let @x='%%%x``x'
 	let @d='%%%hxx``xx'
 
-	let @a='i#' "place un commentaire et va à la ligne inferieur
-	let @z='xOB^^' "enlève un commentaire
-	let @c='i#include <stdio.h>#include <stdlib.h>int main(int argc, char* argv[]){return 0;}OAOA	'
-	let @p='iprintf("");hhi'
-	let @f='ifor (;;){}ODOAOCOCOCOCOCOC'
-
 	"if python:
-	autocmd FileType python let @c='i#!/usr/bin/env python3# -*- coding: utf-8 -*-def main():"""if __name__ == "__main__:main()OAOAOAOA'
-	autocmd FileType python let @p='iprint("")ODOD'
-	autocmd FileType python let @f='ifor i in range():ODOD'
-	"if C:
-	autocmd BufRead,BufNewFile *.c,*.h,*.cpp let @t='a{}OA	 '
-	autocmd BufRead,BufNewFile *.c,*.h,*.cpp let @a='i//' "place un commentaire et va à la ligne inferieur
-	autocmd BufRead,BufNewFile *.c,*.h,*.cpp let @z='xxOB^^'
-    "if rust:
-    autocmd BufRead,BufNewFile *.rs let @p='iprintln!("{}", );ODi'
-
-	"if java:
-	autocmd FileType java let @p='iSystem.out.println("");hhi'
-	autocmd FileType java let @c='ipublic class Main {public static void main(String argv[]) {System.out.println("Hello word");}}vkkkk=jo'
-
-" }
-
+	autocmd FileType python let @c='i#!/usr/bin/env python3# -*- coding: utf-8 -*-def main():if __name__ == "__main__:main()OAOAOAOA'
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -567,6 +548,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 " bottom bar
 Plug 'vim-airline/vim-airline'
 Plug 'honza/vim-snippets'
+Plug 'mattn/emmet-vim'							" pour le html
+Plug 'rhysd/vim-grammarous'
 
 call plug#end()
 
