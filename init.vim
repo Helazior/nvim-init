@@ -96,8 +96,8 @@ set backupdir=~/.cache/vim " Directory to store backup files.
 	nnoremap <F3> :set list!<CR>"
 	set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 	" spell languages
-	set spelllang=fr
-	setlocal spell spelllang=fr
+	set spelllang=fr,en_us
+	setlocal spell spelllang=fr,en_us
 	" Show nine spell checking candidates at most
 	set spellsuggest=best,9
 
