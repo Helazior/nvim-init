@@ -10,6 +10,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 Mettre le `init.vim` dans :
 `~/.config/nvim/`
 
+Avoir nodejs à jour.  
 
 Puis dans nvim taper :
 ```
