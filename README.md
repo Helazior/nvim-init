@@ -19,11 +19,7 @@ Puis dans nvim taper :
 :CocInstall coc-vimtex
 :CocInstall coc-java
 :CocInstall coc-snippets
-:CocConfig
 ```
-et mettre :
-`"diagnostic.displayByAle": true`
-
 (
 Pour coc-snippets :
 ```
