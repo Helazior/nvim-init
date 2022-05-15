@@ -43,6 +43,11 @@ pip3 install black
 pip3 install yapf
 ```
 
+Rust Analyzer
+```
+curl -o -L ~/.bin/rust-analyzer https://github.com/rust-analyzer/rust-analyzer/releases/download/2021-04-12/rust-analyzer-linux
+chmod +x ~/.bin/rust-analyzer
+```
 
 Dans `~/.zshrc_alias` s'il existe (ou .zshrc sinon) mettre :
 ```
