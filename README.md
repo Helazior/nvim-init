@@ -45,9 +45,11 @@ pip3 install yapf
 
 Rust Analyzer
 ```
-curl -o -L ~/.bin/rust-analyzer https://github.com/rust-analyzer/rust-analyzer/releases/download/2021-04-12/rust-analyzer-linux
-chmod +x ~/.bin/rust-analyzer
+mkdir -p ~/.local/bin
+curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
+chmod +x ~/.local/bin/rust-analyzer
 ```
+ou avec yay si sur archlinux
 
 Dans `~/.zshrc_alias` s'il existe (ou .zshrc sinon) mettre :
 ```
