@@ -19,7 +19,10 @@ Puis dans nvim taper :
 :CocInstall coc-vimtex
 :CocInstall coc-java
 :CocInstall coc-snippets
+
+:CocInstall coc-json coc-python coc-vimlsp coc-rust-analyzer coc-rls coc-pyright coc-pydocstring coc-clangd coc-copilot 
 ```
+
 (
 Pour coc-snippets :
 ```
