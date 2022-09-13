@@ -20,7 +20,7 @@ Puis dans nvim taper :
 :CocInstall coc-java
 :CocInstall coc-snippets
 
-:CocInstall coc-json coc-python coc-vimlsp coc-rust-analyzer coc-rls coc-pyright coc-pydocstring coc-clangd coc-copilot 
+:CocInstall coc-json coc-vimlsp coc-rust-analyzer coc-rls coc-pyright coc-pydocstring coc-clangd coc-copilot 
 ```
 
 (
@@ -30,12 +30,37 @@ pip3 install --user neovim
 ```
 )
 
+Dans :CocConfig
+```
+{
+	"coc.preferences.formatOnSaveFiletypes": [
+		"css",
+		"markdown",
+		"javascript",
+		"graphql",
+		"html",
+		"yaml",
+		"json",
+		"python"
+	],
+	"diagnostic.checkCurrentLine": true,
+	// python config
+	"python.linting.enabled": true,
+	"python.linting.pylintEnabled": true,
+	"snippets.ultisnips.directories": [
+		"UltiSnips",
+		"~/.config/nvim/utils/snips"
+	]
+}
+```
+
 Si dans un programme java il n'arrive pas à activer coc-java :
 Puis aller sur `https://download.eclipse.org/jdtls/snapshots/?d`
 Télécharger `jdt-language-server-1.5.0-202110010353.tar.gz` ou plus récent, le décompresser dans :
 `~/.config/coc/extensions/coc-java-data/server`
 
-
+_________________
+// On n'utilise plus Ale maintenant !
 Pour Ale, installer dans le terminal :
 
 ```
@@ -45,6 +70,7 @@ pip3 install autopep8
 pip3 install black
 pip3 install yapf
 ```
+__________________
 
 Rust Analyzer
 ```
