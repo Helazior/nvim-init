@@ -1,9 +1,8 @@
 set nocompatible            " disable compatibility to old-time vi
 set ttyfast                 " Speed up scrolling in Vim
-" set spell                 " enable spell check (may need to download language package)
+set nospell                 " enable spell check (may need to download language package)
 " set noswapfile            " disable creating swap file
 set backupdir=~/.cache/vim " Directory to store backup files.
-
 
 " General {
     filetype plugin indent on   " Automatically detect file types.
@@ -54,9 +53,9 @@ set backupdir=~/.cache/vim " Directory to store backup files.
 
 " Vim UI {
 
+	autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100)
 	"ENREGISTRER AUTOMATIQUEMENT :"
 	autocmd FocusLost,TabLeave * :wall
-
 
 	set cursorline                  " Highlight current line
 
@@ -96,8 +95,8 @@ set backupdir=~/.cache/vim " Directory to store backup files.
 	nnoremap <F3> :set list!<CR>"
 	set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 	" spell languages
-	set spelllang=fr
-	setlocal spell spelllang=fr
+	set spelllang=fr,en_us
+	setlocal spell spelllang=fr,en_us
 	" Show nine spell checking candidates at most
 	set spellsuggest=best,9
 
@@ -121,8 +120,6 @@ set backupdir=~/.cache/vim " Directory to store backup files.
     " Remove trailing whitespaces and ^M chars
     " To disable the stripping of whitespace, add the following to your
     " .vimrc.before.local file:
-    let g:spf13_keep_trailing_whitespace = 1
-    autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> if !exists('g:spf13_keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
     autocmd FileType go autocmd BufWritePre <buffer> Fmt
     autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
     autocmd FileType haskell,puppet,ruby,yml setlocal expandtab shiftwidth=2 softtabstop=2
@@ -214,228 +211,10 @@ set backupdir=~/.cache/vim " Directory to store backup files.
 
 " Plugins {
 
-" colorsheme
-	autocmd vimenter * ++nested colorscheme gruvbox
-	set background=dark
-	let g:gruvbox_contrast_dark="high"
-	let g:gruvbox_inverse=0
 
-
-"coc completion:
-" Set internal encoding of vim, not needed on neovim, since coc.nvim using some
-" unicode characters in the file autoload/float.vim
-set encoding=utf-8
-
-" TextEdit might fail if hidden is not set.
-set hidden
-
-" Some servers have issues with backup files, see #649.
-set nobackup
-set nowritebackup
-
-" Give more space for displaying messages.
-" set cmdheight=2
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Map function and class text objects
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
-
-" Remap <C-f> and <C-b> for scroll float windows/popups.
-if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
- nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-endif
-
-" Use CTRL-S for selections ranges.
-" Requires 'textDocument/selectionRange' support of language server.
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
-
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
-
-" Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add (Neo)Vim's native statusline support.
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Mappings for CoCList
-" Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR> 
-
-
-" fzl
-map ; :Files<CR>
-
-let g:loaded_matchit = 1
-
-" Ale
-let g:ale_disable_lsp = 1
-let g:ale_sign_column_always = 1
-let g:ale_set_highlights = 1
-function! LinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
-
-    return l:counts.total == 0 ? 'OK' : printf(
-    \   '%dW %dE',
-    \   all_non_errors,
-    \   all_errors
-    \)
-endfunction
-
-set statusline=%{LinterStatus()}
-
-let b:ale_warn_about_trailing_whitespace = 0
-let g:ale_lint_on_text_changed = 'always'
-
-
-" Check Python files with flake8 and pylint.
-" let b:ale_linters = ['pylint']
-" Fix Python files with autopep8 and yapf.
-" let b:ale_fixers = ['autopep8', 'yapf', 'black']
-
-" Disable warnings about trailing whitespace for Python files.
-let b:ale_warn_about_trailing_whitespace = 0
-
-function _AleVisualSelection()
-    ALEFix
-endfunc
-
-map <silent> <F9> :call _AleVisualSelection()<CR>
-
-
-" Markdown :
 " set to 1, nvim will open the preview window after entering the markdown buffer
 " default: 0
-let g:mkdp_auto_start = 0
+let g:mkdp_auto_start = 1
 
 " options for markdown render
 " mkit: markdown-it options for render
@@ -467,7 +246,7 @@ let g:mkdp_preview_options = {
 
 "" preview page title
 " ${name} will be replace with the file name
-let g:mkdp_page_title = '「${name}」'
+let g:mkdp_page_title = '${name}'
 
 " recognized filetypes
 " these filetypes will have MarkdownPreview... commands
@@ -481,32 +260,10 @@ nmap <Leader>lm <Plug>MarkdownPreviewStop
 "}
 " GUI Settings {
 
-    " GVIM- (here instead of .gvimrc)
-    if has('gui_running')
-        set guioptionsr-=T           " Remove the toolbar
-        set lines=40                " 40 lines of text instead of 24
-        if !exists("g:spf13_no_big_font")
-            if has("gui_running")
-                set guifont=Andale\ Mono\ Regular\ 12,Menlo\ Regular\ 11,Consolas\ Regular\ 12,Courier\ New\ Regular\ 14
-            endif
-        endif
-    else
-        if &term == 'xterm' || &term == 'screen'
-            set t_Co=256            " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
-        endif
-        "set term=builtin_ansi       " Make arrow and other keys work
-    endif
-
 " }
 
 " Functions {
 
-" Use local gvimrc if available and gui is running {
-    if has('gui_running')
-        if filereadable(expand("~/.gvimrc.local"))
-            source ~/.gvimrc.local
-        endif
-    endif
 " }
 "}
 
@@ -522,23 +279,21 @@ nmap <Leader>lm <Plug>MarkdownPreviewStop
 	"if python:
 	autocmd FileType python let @c='i#!/usr/bin/env python3# -*- coding: utf-8 -*-def main():if __name__ == "__main__:main()OAOAOAOA'
 
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
-
-" code check when saved
+"code check when saved
 nmap <Leader>P :Preview<CR>
 
-"call plug#begin(stdpath('~/.config/nvim/') . '/plugged)
+
 call plug#begin()
 
 Plug 'morhetz/gruvbox'							" Pour avoir un beau thème
-Plug 'dense-analysis/ale'						" Correcteur static d'erreur (indispensable)
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " Autocompletion (indispensable)
+"Plug 'sainnhe/sonokai'
+Plug 'patstockwell/vim-monokai-tasty'
+Plug 'ayu-theme/ayu-vim'
+Plug 'reewr/vim-monokai-phoenix'
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Pour mieux se déplacer dans les dossiers
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdcommenter'					" <leader> c space pour commenter et décommenter de gros bloques
-Plug 'airblade/vim-gitgutter'					" Pour voir les modifs git
 Plug 'https://github.com/vim-scripts/restore_view.vim.git' " Pour que le curseur revienne au même endroit que lorsqu'on a quitté le programme
 Plug 'frazrepo/vim-rainbow'						" Pour avoir les couleurs sur les parenthèses qui matchent
 Plug 'andymass/vim-matchup'						" match les if else etc. avec %
@@ -547,39 +302,53 @@ Plug 'lervag/vimtex'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 " bottom bar
 Plug 'vim-airline/vim-airline'
-Plug 'honza/vim-snippets'
+" Plug 'honza/vim-snippets'
 Plug 'mattn/emmet-vim'							" pour le html
 Plug 'rhysd/vim-grammarous'
+Plug 'rust-lang/rust.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
+source ~/.config/nvim/plug-config/coc.vim	
 
-" Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
+" colorsheme
+	autocmd vimenter * ++nested colorscheme gruvbox
+	set background=dark
+	let g:gruvbox_contrast_dark="high"
+	let g:gruvbox_inverse=0
+	if (empty($TMUX))
+		if (has("nvim"))
+			"For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+			let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+		endif
+		"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+		"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+		" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+		if (has("termguicolors"))
+			set termguicolors
+		endif
+	endif
+	let g:gruvbox_italic = 1
+	let g:gruvbox_transparent_bg = 1
+	let g:gruvbox_sign_column = 'bg0'
+	let g:gruvbox_vert_split = 'fg0'
+	let g:gruvbox_invert_signs = 1
 
-" Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
+	" The configuration options should be placed before `colorscheme sonokai`.
+	"let g:sonokai_style = 'shusia'
+	"let g:sonokai_style = 'andromeda'
+	"let g:sonokai_better_performance = 1
+	"colorscheme sonokai
 
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
+	"set termguicolors     " enable true colors support
+	"let ayucolor="light"  " for light version of theme
+	"let ayucolor="mirage" " for mirage version of theme
+	"let ayucolor="dark"   " for dark version of theme
+	"colorscheme ayu
 
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
+"let g:airline_theme='monokai_tasty'
+"let g:vim_monokai_tasty_italic = 1
+"colorscheme vim-monokai-tasty
 
-" Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
+"colorscheme monokai-phoenix
 
-" Use <leader>x for convert visual selected code to snippet
-xmap <leader>x  <Plug>(coc-convert-snippet)
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-let g:coc_snippet_next = '<tab>'
