@@ -7,8 +7,16 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
 
-Mettre le `init.vim` dans :
-`~/.config/nvim/`
+Cloner le repo :
+```
+git clone ...
+```
+
+Mettre les fichiers du vimrc en lien symbolique :
+```
+cd ~/.config/
+ln -s ~/nvim-init/ nvim/
+```
 
 Avoir nodejs à jour.  
 
