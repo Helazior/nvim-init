@@ -66,3 +66,5 @@ Puis :
 source .zshrc
 source .zshrc_alias
 ```
+
+Faire `:checkhealt` dans vim pour voir les dépendances qu'il manque
