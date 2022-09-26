@@ -96,6 +96,7 @@ set backupdir=~/.cache/vim " Directory to store backup files.
 	set spellsuggest=best,9
 
 	nnoremap <silent> <F7> :set spell!<cr>
+	nnoremap <silent> <F8> :LanguageToolCheck<cr>
 " }
 
 source ~/.config/nvim/formatting.vim
@@ -143,12 +144,14 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'vim-airline/vim-airline'					" barre du bas
 "Plug 'honza/vim-snippets'						" pour avoir des blocks de code avec l'autocompletion (y en a déjà un dans coc)
 "Plug 'mattn/emmet-vim'							" pour le html
-Plug 'rhysd/vim-grammarous'
+"Plug 'rhysd/vim-grammarous'
+Plug 'dpelle/vim-LanguageTool'	"spell check
 Plug 'rust-lang/rust.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 let g:rainbow_active = 1
+let g:languagetool_jar='~/LanguageTool-5.2/languagetool-commandline.jar'
 "source ~/.config/nvim/plug-config/vimtex.vim " TODO: regler l'erreur 
 source ~/.config/nvim/plug-config/mkdp.vim "Markdown
 source ~/.config/nvim/plug-config/coc.vim
