@@ -61,14 +61,14 @@ set backupdir=~/.cache/vim " Directory to store backup files.
 
 
 	"if has('statusline')
-        "set laststatus=2
+		"set laststatus=2
 
-        "" Broken down into easily includeable segments
-        "set statusline=%<%f\                     " Filename
-        "set statusline+=%w%h%m%r                 " Options
-        "set statusline+=\ [%{&ff}/%Y]            " Filetype
-        "set statusline+=\ [%{getcwd()}]          " Current dir
-        "set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+		" Broken down into easily includeable segments
+		"set statusline=%<%f\                     " Filename
+		"set statusline+=%w%h%m%r                 " Options
+		"set statusline+=\ [%{&ff}/%Y]            " Filetype
+		"set statusline+=\ [%{getcwd()}]          " Current dir
+		"set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 	"endif
 
     set backspace=indent,eol,start  " Backspace for dummies
@@ -123,7 +123,6 @@ source ~/.config/nvim/remaping.vim
 	"if python:
 	autocmd FileType python let @c='i#!/usr/bin/env python3# -*- coding: utf-8 -*-'
 	" }
-
 call plug#begin()
 
 Plug 'morhetz/gruvbox'							" Pour avoir un beau thème
@@ -142,6 +141,7 @@ Plug 'andymass/vim-matchup'						" match les if else etc. avec %
 Plug 'lervag/vimtex'							" \ll pour compiler automatiquement / arrêter et peut rendre plus lisible en configurant
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}  " voir sur le naviguateur le markdown
 Plug 'vim-airline/vim-airline'					" barre du bas
+Plug 'vim-airline/vim-airline-themes'
 "Plug 'honza/vim-snippets'						" pour avoir des blocks de code avec l'autocompletion (y en a déjà un dans coc)
 "Plug 'mattn/emmet-vim'							" pour le html
 "Plug 'rhysd/vim-grammarous'
@@ -152,7 +152,13 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 let g:rainbow_active = 1
 let g:languagetool_jar='~/LanguageTool-5.2/languagetool-commandline.jar'
+
+
+
 "source ~/.config/nvim/plug-config/vimtex.vim " TODO: regler l'erreur 
+
+
+source ~/.config/nvim/plug-config/airline.vim "Markdown
 source ~/.config/nvim/plug-config/mkdp.vim "Markdown
 source ~/.config/nvim/plug-config/coc.vim
 source ~/.config/nvim/plug-config/colorsheme.vim

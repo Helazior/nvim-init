@@ -75,6 +75,10 @@
 	" fzf
 	map <silent> ;	:Files<CR>
 	map <silent> !	:Buffers<CR>
+
+	" buffer
+	map <silent> <C-S-Right> :bn<cr>  
+	map <silent> <C-S-Left> :bp<cr>  
 	
 " }
 
