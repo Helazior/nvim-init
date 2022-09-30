@@ -15,7 +15,7 @@ git clone ...
 Mettre les fichiers du vimrc en lien symbolique :
 ```
 cd ~/.config/
-ln -s ~/nvim-init/ nvim/
+ln -s ~/nvim-init/ nvim
 ```
 
 Avoir nodejs à jour.  
