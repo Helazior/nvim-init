@@ -28,7 +28,7 @@ Puis dans nvim taper :
 :CocInstall coc-java
 :CocInstall coc-snippets
 
-:CocInstall coc-json coc-vimlsp coc-rust-analyzer coc-rls coc-pyright coc-pydocstring coc-clangd coc-copilot 
+:CocInstall coc-json coc-vimlsp coc-rust-analyzer coc-pyright coc-pydocstring coc-clangd
 ```
 
 (
@@ -37,6 +37,7 @@ Pour coc-snippets :
 pip3 install --user neovim
 ```
 )
+java : 
 
 -server-1.5.0-202110010353.tar.gz` ou plus récent, le décompresser dans :
 `~/.config/coc/extensions/coc-java-data/server`
