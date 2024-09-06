@@ -64,13 +64,14 @@
 
 	" Move blocks of code
 	" normal mode
-
 	nnoremap <silent> <C-Up>   :<C-u>m-2<CR>==
 	nnoremap <silent> <C-Down> :<C-u>m+<CR>==
 	" visual mode 
 	xnoremap <silent> <C-Up>   :m-2<CR>gv=gv
 	xnoremap <silent> <C-Down> :m'>+<CR>gv=gv
-
+	" insert mode
+	imap <silent> <C-Up>   <ESC>:<C-u>m-2<CR>==
+	imap <silent> <C-Down> <ESC>:<C-u>m+<CR>==
 
 	" fzf
 	map <silent> ;	:Files<CR>

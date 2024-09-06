@@ -94,6 +94,7 @@ set backupdir=~/.cache/vim " Directory to store backup files.
 	setlocal spell spelllang=fr,en_us
 	" Show nine spell checking candidates at most
 	set spellsuggest=best,9
+	set spell!
 
 	nnoremap <silent> <F7> :set spell!<cr>
 	nnoremap <silent> <F8> :LanguageToolCheck<cr>
@@ -126,10 +127,10 @@ source ~/.config/nvim/remaping.vim
 call plug#begin()
 
 Plug 'morhetz/gruvbox'							" Pour avoir un beau thème
-"Plug 'sainnhe/sonokai'
-"Plug 'patstockwell/vim-monokai-tasty'
-"Plug 'ayu-theme/ayu-vim'
-"Plug 'reewr/vim-monokai-phoenix'
+Plug 'sainnhe/sonokai'
+Plug 'patstockwell/vim-monokai-tasty'
+Plug 'ayu-theme/ayu-vim'
+Plug 'reewr/vim-monokai-phoenix'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Pour mieux se déplacer dans les dossiers
 Plug 'junegunn/fzf.vim'
@@ -144,10 +145,12 @@ Plug 'vim-airline/vim-airline'					" barre du bas
 Plug 'vim-airline/vim-airline-themes'
 "Plug 'honza/vim-snippets'						" pour avoir des blocks de code avec l'autocompletion (y en a déjà un dans coc)
 "Plug 'mattn/emmet-vim'							" pour le html
-"Plug 'rhysd/vim-grammarous'
+Plug 'rhysd/vim-grammarous'		"spell check
 Plug 'dpelle/vim-LanguageTool'	"spell check
 Plug 'rust-lang/rust.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+
 
 call plug#end()
 let g:rainbow_active = 1
@@ -156,6 +159,10 @@ let g:languagetool_jar='~/LanguageTool-5.2/languagetool-commandline.jar'
 
 
 "source ~/.config/nvim/plug-config/vimtex.vim " TODO: regler l'erreur 
+let g:vimtex_compiler_latexmk_engines = {
+    \ '_'           : '-pdf',
+    \ 'pdf_escaped' : '-pdf -pdflatex="pdflatex -shell-escape %O %S"',
+\}
 
 
 source ~/.config/nvim/plug-config/airline.vim "Markdown
