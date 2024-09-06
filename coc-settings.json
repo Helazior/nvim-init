@@ -13,7 +13,6 @@
 	],
 	"diagnostic.checkCurrentLine": true,
 	"clangd.inlayHints.enable": false,
-	// python config
 	"python.linting.enabled": true,
 	"python.linting.pylintEnabled": true,
 	"snippets.ultisnips.directories": [
@@ -21,7 +20,7 @@
 		"~/.config/nvim/utils/snips"
 	],
 	"python.linting.pylintArgs": [
-		"--extension-pkg-whitelist=pygame" // comma separated
-  ],
-  "snippets.ultisnips.pythonPrompt": false
+		"--extension-pkg-whitelist=pygame"
+	],
+	"snippets.ultisnips.pythonPrompt": false
 }

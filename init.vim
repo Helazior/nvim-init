@@ -150,8 +150,6 @@ Plug 'dpelle/vim-LanguageTool'	"spell check
 Plug 'rust-lang/rust.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-
-
 call plug#end()
 let g:rainbow_active = 1
 let g:languagetool_jar='~/LanguageTool-5.2/languagetool-commandline.jar'

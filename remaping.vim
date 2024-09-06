@@ -80,6 +80,5 @@
 	" buffer
 	map <silent> <C-S-Right> :bn<cr>  
 	map <silent> <C-S-Left> :bp<cr>  
-	
 " }
 
