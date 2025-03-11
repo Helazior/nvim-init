@@ -20,15 +20,18 @@ ln -s ~/nvim-init/ nvim
 
 Avoir nodejs à jour.  
 
+Installer Copilot :
+```
+git clone https://github.com/github/copilot.vim.git \
+  ~/.config/nvim/pack/github/start/copilot.vim
+```
+
 Puis dans nvim taper :
 ```
 :PlugInstall
-:CocInstall coc-pairs
-:CocInstall coc-vimtex
-:CocInstall coc-java
-:CocInstall coc-snippets
 
-:CocInstall coc-json coc-vimlsp coc-rust-analyzer coc-pyright coc-pydocstring coc-clangd
+:CocInstall coc-pairs coc-vimtex coc-json coc-java coc-snippets coc-vimlsp coc-rust-analyzer coc-pyright coc-pydocstring coc-clangd coc-tsserver coc-prettier coc-highlight
+:CocInstall @hexuhua/coc-copilot
 ```
 
 (
